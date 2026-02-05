@@ -1,83 +1,1969 @@
 <!doctype html>
-<html lang="en">
+<html lang="vi">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>AES Platform - Login</title>
-  <link rel="stylesheet" href="./assets/css/style.css" />
-</head>
+  <title>AES Platform - AI English Learning</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --text: #1e293b;
+      --muted: #64748b;
+      --line: #e2e8f0;
+      --primary: #4f46e5;
+      --primary-dark: #4338ca;
+      --secondary: #8b5cf6;
+      --success: #10b981;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --mentor: #3b82f6;
+      --learner: #8b5cf6;
+      --admin: #ec4899;
+      --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+      --radius: 24px;
+      --radius-sm: 16px;
+      --transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
 
-<body>
+    * { 
+      box-sizing: border-box; 
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body { 
+      height: 100%; 
+      font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      color: var(--text);
+      background: linear-gradient(135deg, #f0f4ff 0%, #e6e9ff 100%);
+      line-height: 1.5;
+    }
+
+    /* Language specific fonts */
+    body.lang-ko {
+      font-family: 'Noto Sans KR', 'Roboto', sans-serif;
+    }
+    
+    body.lang-en {
+      font-family: 'Roboto', sans-serif;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 5%;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .brand {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .logo {
+      width: 48px;
+      height: 48px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      position: relative;
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 800;
+      font-size: 20px;
+    }
+
+    .brand-text {
+      font-size: 28px;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: -0.5px;
+    }
+
+    .top-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .lang-selector {
+      display: flex;
+      gap: 4px;
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 4px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    }
+
+    .lang-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 12px;
+      background: white;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 14px;
+      transition: var(--transition);
+      border: 2px solid transparent;
+    }
+
+    .lang-btn.active {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+    }
+
+    .lang-btn:hover:not(.active) {
+      background: #f1f5f9;
+      transform: translateY(-1px);
+    }
+
+    .btn {
+      border: 0;
+      cursor: pointer;
+      border-radius: 14px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      text-decoration: none;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      transition: var(--transition);
+      gap: 8px;
+    }
+
+    .btn-small { 
+      padding: 10px 20px; 
+      font-size: 15px; 
+    }
+
+    .btn-large { 
+      width: 100%; 
+      padding: 18px; 
+      font-size: 17px; 
+      font-weight: 700;
+      box-shadow: 0 4px 14px rgba(79, 70, 229, 0.25);
+    }
+
+    .btn-primary {
+      color: white;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    }
+
+    .btn-primary:hover { 
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(79, 70, 229, 0.35);
+    }
+
+    .btn-secondary {
+      background: white;
+      color: var(--primary);
+      border: 2px solid var(--primary);
+    }
+
+    .btn-secondary:hover {
+      background: #f0f4ff;
+      transform: translateY(-2px);
+      border-color: var(--primary-dark);
+    }
+
+    .page {
+      display: grid;
+      grid-template-columns: minmax(380px, 520px) 1fr;
+      gap: 48px;
+      padding: 40px 5%;
+      align-items: center;
+      min-height: calc(100vh - 72px);
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 56px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(79, 70, 229, 0.08) 0%, transparent 70%);
+      z-index: 0;
+    }
+
+    .card-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .title {
+      margin: 0 0 24px;
+      font-size: 48px;
+      line-height: 1.1;
+      letter-spacing: -1.5px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      font-weight: 800;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      margin-bottom: 40px;
+      font-size: 20px;
+      line-height: 1.6;
+      max-width: 500px;
+    }
+
+    .form { 
+      margin-top: 16px; 
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .label {
+      display: block;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 10px;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .label i {
+      color: var(--primary);
+      font-size: 18px;
+    }
+
+    .input {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: #f8fafc;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 16px 20px;
+      transition: var(--transition);
+    }
+
+    .input:focus-within {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.12);
+      transform: translateY(-1px);
+    }
+
+    .input input {
+      border: 0;
+      background: transparent;
+      outline: none;
+      width: 100%;
+      font-size: 17px;
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .input input::placeholder {
+      color: var(--muted);
+      opacity: 0.7;
+    }
+
+    .icon {
+      width: 24px;
+      text-align: center;
+      color: var(--primary);
+      font-size: 20px;
+    }
+
+    .ghost {
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+      font-size: 22px;
+      opacity: 0.6;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+      transition: var(--transition);
+    }
+
+    .ghost:hover { 
+      opacity: 1; 
+      color: var(--primary);
+      background: #f1f5f9;
+    }
+
+    .forgot {
+      display: block;
+      text-align: right;
+      margin: 4px 0 20px;
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 15px;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 6px;
+    }
+
+    .forgot:hover { 
+      opacity: 0.9;
+      transform: translateX(2px);
+    }
+
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--line), transparent);
+      margin: 32px 0 28px;
+      position: relative;
+    }
+
+    .divider-text {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--card);
+      padding: 0 20px;
+      color: var(--muted);
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    .who {
+      margin: 0 0 24px;
+      font-size: 28px;
+      color: var(--text);
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .who i {
+      color: var(--primary);
+    }
+
+    .roles {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .role {
+      border: 2px solid var(--line);
+      border-radius: 20px;
+      background: white;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      cursor: pointer;
+      transition: var(--transition);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.03);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .role::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, transparent 70%);
+      opacity: 0;
+      transition: var(--transition);
+      z-index: 1;
+    }
+
+    .role:hover::after {
+      opacity: 1;
+    }
+
+    .role:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+      border-color: rgba(79, 70, 229, 0.3);
+    }
+
+    .role .avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      font-weight: 700;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .role-admin .avatar {
+      background: linear-gradient(135deg, #ec4899, #db2777);
+      color: white;
+    }
+
+    .role-mentor .avatar {
+      background: linear-gradient(135deg, #3b82f6, #2563eb);
+      color: white;
+    }
+
+    .role-learner .avatar {
+      background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+      color: white;
+    }
+
+    .role-text {
+      font-weight: 700;
+      color: var(--text);
+      font-size: 18px;
+      text-align: center;
+      margin-top: 4px;
+    }
+
+    .role.active {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2), 0 12px 20px -5px rgba(79, 70, 229, 0.15);
+      transform: translateY(-4px);
+    }
+
+    .role.active::before {
+      content: "✓";
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      width: 28px;
+      height: 28px;
+      background: var(--primary);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      font-weight: bold;
+      box-shadow: 0 4px 12px rgba(79, 70, 229, 0.4);
+      z-index: 2;
+    }
+
+    .signup {
+      margin-top: 16px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    .signup a { 
+      color: var(--primary); 
+      text-decoration: none; 
+      font-weight: 700; 
+      transition: var(--transition);
+      position: relative;
+      padding-bottom: 2px;
+    }
+
+    .signup a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      transition: var(--transition);
+    }
+
+    .signup a:hover::after { 
+      width: 100%;
+    }
+
+    .hero {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+    }
+
+    .hero-content {
+      text-align: center;
+      max-width: 600px;
+    }
+
+    .hero-title {
+      font-size: 56px;
+      font-weight: 800;
+      margin-bottom: 24px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      line-height: 1.1;
+      letter-spacing: -2px;
+    }
+
+    .hero-subtitle {
+      font-size: 24px;
+      color: var(--text);
+      margin-bottom: 40px;
+      font-weight: 300;
+      line-height: 1.5;
+    }
+
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin-top: 30px;
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 42px;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 16px;
+      color: var(--muted);
+      margin-top: 8px;
+      font-weight: 500;
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      background: white;
+      color: var(--text);
+      padding: 16px 28px;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2), 0 8px 10px -6px rgba(0, 0, 0, 0.15);
+      z-index: 2000;
+      transform: translateX(500px);
+      opacity: 0;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      border-left: 4px solid var(--primary);
+      font-weight: 500;
+      font-size: 16px;
+    }
+
+    .toast.show {
+      transform: translateX(0);
+      opacity: 1;
+    }
+
+    .toast.success {
+      border-left-color: var(--success);
+    }
+
+    .toast.error {
+      border-left-color: var(--danger);
+    }
+
+    .toast.warning {
+      border-left-color: var(--warning);
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.65);
+      z-index: 3000;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .modal.show {
+      display: flex;
+      opacity: 1;
+    }
+
+    .modal-content {
+      background: white;
+      border-radius: 24px;
+      width: 90%;
+      max-width: 480px;
+      padding: 40px;
+      position: relative;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+      animation: modalSlideIn 0.4s;
+      border: 1px solid var(--line);
+    }
+
+    @keyframes modalSlideIn {
+      from { opacity: 0; transform: translateY(20px) scale(0.98); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .close-modal {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      font-size: 24px;
+      color: var(--muted);
+      cursor: pointer;
+      transition: var(--transition);
+      background: none;
+      border: none;
+      width: 36px;
+      height: 36px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .close-modal:hover {
+      color: var(--danger);
+      background: #fee2e2;
+      transform: rotate(90deg);
+    }
+
+    .modal-content h2 {
+      text-align: center;
+      margin-bottom: 24px;
+      color: var(--text);
+      font-size: 32px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+
+    .modal-content p {
+      text-align: center;
+      color: var(--muted);
+      margin-bottom: 32px;
+      line-height: 1.6;
+      font-size: 17px;
+    }
+
+    .locked-message {
+      background: #fef2f2;
+      border-left: 4px solid var(--danger);
+      padding: 18px;
+      border-radius: 12px;
+      margin-bottom: 24px;
+      color: #b91c1c;
+      font-size: 16px;
+      display: none;
+      font-weight: 500;
+      line-height: 1.5;
+      box-shadow: 0 2px 8px rgba(239, 68, 68, 0.1);
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 40px;
+    }
+
+    .feature-card {
+      background: white;
+      border-radius: 20px;
+      padding: 28px;
+      text-align: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      transition: var(--transition);
+      border: 1px solid var(--line);
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 20px -5px rgba(0, 0, 0, 0.12);
+      border-color: var(--primary);
+    }
+
+    .feature-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      color: white;
+      font-size: 28px;
+      box-shadow: 0 8px 20px rgba(79, 70, 229, 0.3);
+    }
+
+    .feature-title {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+
+    .feature-desc {
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 1024px) {
+      .page { 
+        grid-template-columns: 1fr; 
+        padding: 32px 5%;
+      }
+      
+      .hero { 
+        display: none; 
+      }
+      
+      .title { 
+        font-size: 42px; 
+      }
+      
+      .card {
+        padding: 40px;
+      }
+      
+      .roles {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .hero-title {
+        font-size: 48px;
+      }
+      
+      .hero-stats {
+        flex-direction: column;
+        align-items: center;
+        gap: 24px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .topbar {
+        padding: 16px 5%;
+        flex-direction: column;
+        gap: 16px;
+      }
+      
+      .brand {
+        width: 100%;
+        justify-content: space-between;
+      }
+      
+      .card {
+        padding: 32px 28px;
+        margin: 0 16px;
+      }
+      
+      .title {
+        font-size: 36px;
+      }
+      
+      .subtitle {
+        font-size: 18px;
+      }
+      
+      .btn-large {
+        padding: 16px;
+        font-size: 16px;
+      }
+      
+      .roles {
+        grid-template-columns: 1fr;
+      }
+      
+      .lang-selector {
+        width: 100%;
+        justify-content: center;
+      }
+      
+      .hero-title {
+        font-size: 40px;
+      }
+      
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body class="lang-vi">
   <header class="topbar">
     <div class="brand">
-      <div class="logo"></div>
+      <div class="logo">
+        <i class="fas fa-robot"></i>
+      </div>
       <span class="brand-text">AES Platform</span>
     </div>
-
     <div class="top-actions">
-      <button class="lang" type="button" aria-label="Language">
-        <span class="flag"></span>
-        <span>English</span>
-        <span class="chev">▾</span>
+      <div class="lang-selector">
+        <button class="lang-btn active" data-lang="vi" title="Tiếng Việt">
+          <span class="flag">🇻🇳</span>
+        </button>
+        <button class="lang-btn" data-lang="en" title="English">
+          <span class="flag">🇺🇸</span>
+        </button>
+        <button class="lang-btn" data-lang="ko" title="한국어">
+          <span class="flag">🇰🇷</span>
+        </button>
+      </div>
+      <button class="btn btn-secondary btn-small" id="toggleRegisterBtn">
+        <i class="fas fa-user-plus"></i>
+        <span class="btn-text">Đăng ký</span>
       </button>
-      <a class="btn btn-primary btn-small" href="#" role="button">Sign up</a>
     </div>
   </header>
 
   <main class="page">
     <section class="card">
-      <h1 class="title">Welcome to<br/>AES Platform</h1>
+      <div class="card-content">
+        <!-- LOGIN FORM -->
+        <form class="form" id="loginForm">
+          <h1 class="title">Chào mừng bạn</h1>
+          <p class="subtitle">Nền tảng học tiếng Anh thông minh với AI - luyện phát âm, giao tiếp và nâng cao kỹ năng ngôn ngữ</p>
+          
+          <label class="label">
+            <i class="fas fa-envelope"></i>
+            <span class="label-text">Email</span>
+          </label>
+          <div class="input">
+            <span class="icon"><i class="fas fa-envelope"></i></span>
+            <input id="loginEmail" type="email" placeholder="Nhập email của bạn" autocomplete="username" required />
+          </div>
 
-      <form class="form" id="loginForm">
-        <label class="label">Username</label>
-        <div class="input">
-          <span class="icon">👤</span>
-          <input id="username" type="text" placeholder="Username" autocomplete="username" />
-        </div>
+          <label class="label">
+            <i class="fas fa-lock"></i>
+            <span class="label-text">Mật khẩu</span>
+          </label>
+          <div class="input">
+            <span class="icon"><i class="fas fa-lock"></i></span>
+            <input id="loginPassword" type="password" placeholder="Nhập mật khẩu" autocomplete="current-password" required />
+            <button class="ghost" type="button" id="toggleLoginPassword" aria-label="Hiển thị mật khẩu">
+              <i class="fas fa-eye"></i>
+            </button>
+          </div>
 
-        <label class="label">Password</label>
-        <div class="input">
-          <span class="icon">🔒</span>
-          <input id="password" type="password" placeholder="Password" autocomplete="current-password" />
-          <button class="ghost" type="button" id="togglePw" aria-label="Show password">››</button>
-        </div>
+          <a class="forgot" href="#" id="forgotPasswordLink">
+            <i class="fas fa-key"></i>
+            <span class="link-text">Quên mật khẩu?</span>
+          </a>
 
-        <a class="forgot" href="#">Forgot your password?</a>
-
-        <button class="btn btn-primary btn-large" type="submit">Log in</button>
-
-        <div class="divider"></div>
-
-        <h2 class="who">Who are you?</h2>
-
-        <div class="roles" role="radiogroup" aria-label="Choose role">
-          <button class="role role-mentor" type="button" data-role="mentor" role="radio" aria-checked="false">
-            <span class="avatar">👨‍🏫</span>
-            <span class="role-text">Mentor</span>
+          <button class="btn btn-primary btn-large" type="submit">
+            <i class="fas fa-sign-in-alt"></i>
+            <span class="btn-text">Đăng nhập ngay</span>
           </button>
 
-          <button class="role role-learner" type="button" data-role="learner" role="radio" aria-checked="false">
-            <span class="avatar">👩‍🎓</span>
-            <span class="role-text">Learner</span>
+          <div class="divider">
+            <span class="divider-text">Hoặc tiếp tục với</span>
+          </div>
+
+          <h2 class="who">
+            <i class="fas fa-user-tag"></i>
+            <span class="who-text">Bạn là ai?</span>
+          </h2>
+          
+          <div class="roles" role="radiogroup" aria-label="Chọn vai trò">
+            <button class="role role-admin active" type="button" data-role="admin" role="radio" aria-checked="true">
+              <span class="avatar">👑</span>
+              <span class="role-text">Quản trị viên</span>
+            </button>
+            <button class="role role-mentor" type="button" data-role="mentor" role="radio" aria-checked="false">
+              <span class="avatar">🎓</span>
+              <span class="role-text">Mentor</span>
+            </button>
+            <button class="role role-learner" type="button" data-role="learner" role="radio" aria-checked="false">
+              <span class="avatar">📚</span>
+              <span class="role-text">Người học</span>
+            </button>
+          </div>
+
+          <div class="signup">
+            Chưa có tài khoản? 
+            <a href="#" id="showRegisterLink">
+              <span class="link-text">Đăng ký miễn phí</span>
+            </a>
+          </div>
+        </form>
+
+        <!-- REGISTER FORM (HIDDEN BY DEFAULT) -->
+        <form class="form" id="registerForm" style="display: none;">
+          <h1 class="title">Tạo tài khoản</h1>
+          <p class="subtitle">Bắt đầu hành trình chinh phục tiếng Anh cùng AI thông minh</p>
+          
+          <label class="label">
+            <i class="fas fa-user"></i>
+            <span class="label-text">Họ và tên</span>
+          </label>
+          <div class="input">
+            <span class="icon"><i class="fas fa-user"></i></span>
+            <input id="registerName" type="text" placeholder="Nhập họ và tên" required />
+          </div>
+          
+          <label class="label">
+            <i class="fas fa-envelope"></i>
+            <span class="label-text">Email</span>
+          </label>
+          <div class="input">
+            <span class="icon"><i class="fas fa-envelope"></i></span>
+            <input id="registerEmail" type="email" placeholder="Nhập email" autocomplete="username" required />
+          </div>
+
+          <label class="label">
+            <i class="fas fa-lock"></i>
+            <span class="label-text">Mật khẩu</span>
+          </label>
+          <div class="input">
+            <span class="icon"><i class="fas fa-lock"></i></span>
+            <input id="registerPassword" type="password" placeholder="Tạo mật khẩu" required />
+            <button class="ghost" type="button" id="toggleRegisterPassword" aria-label="Hiển thị mật khẩu">
+              <i class="fas fa-eye"></i>
+            </button>
+          </div>
+          
+          <label class="label">
+            <i class="fas fa-lock"></i>
+            <span class="label-text">Xác nhận mật khẩu</span>
+          </label>
+          <div class="input">
+            <span class="icon"><i class="fas fa-lock"></i></span>
+            <input id="confirmPassword" type="password" placeholder="Nhập lại mật khẩu" required />
+            <button class="ghost" type="button" id="toggleConfirmPassword" aria-label="Hiển thị mật khẩu">
+              <i class="fas fa-eye"></i>
+            </button>
+          </div>
+
+          <div class="divider">
+            <span class="divider-text">Vai trò của bạn</span>
+          </div>
+
+          <h2 class="who">
+            <i class="fas fa-user-tag"></i>
+            <span class="who-text">Chọn vai trò</span>
+          </h2>
+          
+          <div class="roles" role="radiogroup" aria-label="Chọn vai trò">
+            <button class="role role-admin active" type="button" data-role="admin" role="radio" aria-checked="true">
+              <span class="avatar">👑</span>
+              <span class="role-text">Quản trị viên</span>
+            </button>
+            <button class="role role-mentor" type="button" data-role="mentor" role="radio" aria-checked="false">
+              <span class="avatar">🎓</span>
+              <span class="role-text">Mentor</span>
+            </button>
+            <button class="role role-learner" type="button" data-role="learner" role="radio" aria-checked="false">
+              <span class="avatar">📚</span>
+              <span class="role-text">Người học</span>
+            </button>
+          </div>
+
+          <button class="btn btn-primary btn-large" type="submit">
+            <i class="fas fa-user-plus"></i>
+            <span class="btn-text">Đăng ký tài khoản</span>
           </button>
 
-          <button class="role role-admin" type="button" data-role="admin" role="radio" aria-checked="false">
-            <span class="avatar">🧑‍💼</span>
-            <span class="role-text">Admin</span>
-          </button>
+          <div class="signup">
+            Đã có tài khoản? 
+            <a href="#" id="showLoginLink">
+              <span class="link-text">Đăng nhập ngay</span>
+            </a>
+          </div>
+        </form>
+
+        <div class="locked-message" id="lockedMessage"></div>
+        
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-brain"></i>
+            </div>
+            <h3 class="feature-title">AI Thông minh</h3>
+            <p class="feature-desc">Phân tích phát âm và đưa ra phản hồi tức thì</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-chart-line"></i>
+            </div>
+            <h3 class="feature-title">Theo dõi tiến độ</h3>
+            <p class="feature-desc">Báo cáo chi tiết về sự tiến bộ của bạn</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-globe-asia"></i>
+            </div>
+            <h3 class="feature-title">Đa ngôn ngữ</h3>
+            <p class="feature-desc">Hỗ trợ tiếng Việt, Anh, Hàn Quốc</p>
+          </div>
         </div>
-
-        <p class="signup">
-          Don't have an account? <a href="#">Sign up</a>
-        </p>
-      </form>
+      </div>
     </section>
 
-    <section class="hero" aria-hidden="true">
-      <img src="./assets_img/hero.png" alt="" />
+    <section class="hero">
+      <div class="hero-content">
+        <h1 class="hero-title">Master English with AI</h1>
+        <p class="hero-subtitle">Học tiếng Anh hiệu quả với công nghệ AI tiên tiến - luyện phát âm chuẩn, nâng cao kỹ năng giao tiếp và chinh phục ngôn ngữ toàn cầu</p>
+        
+        <div class="hero-stats">
+          <div class="stat-item">
+            <div class="stat-number">50K+</div>
+            <div class="stat-label">Người học</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">98%</div>
+            <div class="stat-label">Hài lòng</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">24/7</div>
+            <div class="stat-label">Hỗ trợ</div>
+          </div>
+        </div>
+      </div>
     </section>
   </main>
 
-  <script src="./assets/js/app.js"></script>
+  <!-- FORGOT PASSWORD MODAL -->
+  <div class="modal" id="forgotModal">
+    <div class="modal-content">
+      <button class="close-modal" id="closeForgotModal">
+        <i class="fas fa-times"></i>
+      </button>
+      <h2>Khôi phục mật khẩu</h2>
+      <p>Nhập email của bạn để nhận liên kết đặt lại mật khẩu</p>
+      <label class="label">
+        <i class="fas fa-envelope"></i>
+        Email
+      </label>
+      <div class="input">
+        <span class="icon"><i class="fas fa-envelope"></i></span>
+        <input id="forgotEmail" type="email" placeholder="Nhập email của bạn" required />
+      </div>
+      <button class="btn btn-primary btn-large" id="resetPasswordBtn">
+        <i class="fas fa-paper-plane"></i>
+        Gửi liên kết khôi phục
+      </button>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div class="toast" id="toast">
+    <i class="fas fa-info-circle"></i>
+    <span id="toastMessage">Thông báo</span>
+  </div>
+
+  <script>
+    // ===== LANGUAGE TRANSLATIONS =====
+    const translations = {
+      vi: {
+        // Top bar
+        brandText: "AES Platform",
+        registerBtn: "Đăng ký",
+        loginBtn: "Đăng nhập",
+        
+        // Login form
+        loginTitle: "Chào mừng bạn",
+        loginSubtitle: "Nền tảng học tiếng Anh thông minh với AI - luyện phát âm, giao tiếp và nâng cao kỹ năng ngôn ngữ",
+        emailLabel: "Email",
+        passwordLabel: "Mật khẩu",
+        forgotPassword: "Quên mật khẩu?",
+        loginButton: "Đăng nhập ngay",
+        orContinue: "Hoặc tiếp tục với",
+        whoAreYou: "Bạn là ai?",
+        signUpText: "Chưa có tài khoản?",
+        signUpLink: "Đăng ký miễn phí",
+        
+        // Register form
+        registerTitle: "Tạo tài khoản",
+        registerSubtitle: "Bắt đầu hành trình chinh phục tiếng Anh cùng AI thông minh",
+        nameLabel: "Họ và tên",
+        confirmPasswordLabel: "Xác nhận mật khẩu",
+        roleLabel: "Vai trò của bạn",
+        registerButton: "Đ Đăng ký tài khoản",
+        haveAccount: "Đã có tài khoản?",
+        loginLink: "Đăng nhập ngay",
+        
+        // Roles
+        adminRole: "Quản trị viên",
+        mentorRole: "Mentor",
+        learnerRole: "Người học",
+        
+        // Features
+        aiFeature: "AI Thông minh",
+        aiDesc: "Phân tích phát âm và đưa ra phản hồi tức thì",
+        progressFeature: "Theo dõi tiến độ",
+        progressDesc: "Báo cáo chi tiết về sự tiến bộ của bạn",
+        multiLangFeature: "Đa ngôn ngữ",
+        multiLangDesc: "Hỗ trợ tiếng Việt, Anh, Hàn Quốc",
+        
+        // Hero
+        heroTitle: "Master English with AI",
+        heroSubtitle: "Học tiếng Anh hiệu quả với công nghệ AI tiên tiến - luyện phát âm chuẩn, nâng cao kỹ năng giao tiếp và chinh phục ngôn ngữ toàn cầu",
+        students: "Người học",
+        satisfaction: "Hài lòng",
+        support: "Hỗ trợ",
+        
+        // Toast messages
+        selectRole: "Đã chọn vai trò:",
+        loginSuccess: "Đăng nhập thành công! Chào mừng",
+        registerSuccess: "Đăng ký thành công! Chuyển hướng đến trang chủ...",
+        wrongCredentials: "Email hoặc mật khẩu không đúng",
+        accountLocked: "Tài khoản bị khóa do nhập sai quá 5 lần. Vui lòng thử lại sau 15 phút.",
+        remainingAttempts: "Sai mật khẩu. Bạn còn",
+        attemptsLeft: "lần thử.",
+        passwordMismatch: "Mật khẩu xác nhận không khớp",
+        passwordTooShort: "Mật khẩu phải có ít nhất 6 ký tự",
+        emailExists: "Email đã được đăng ký. Vui lòng sử dụng email khác hoặc đăng nhập.",
+        accountDisabled: "Tài khoản của bạn đã bị vô hiệu hóa. Vui lòng liên hệ quản trị viên.",
+        roleMismatch: "Tài khoản này không có quyền",
+        enterEmail: "Vui lòng nhập email của bạn",
+        emailNotFound: "Email không tồn tại trong hệ thống",
+        resetSent: "Liên kết khôi phục mật khẩu đã được gửi đến email của bạn!",
+        fillAllFields: "Vui lòng nhập đầy đủ thông tin",
+        
+        // Locked message
+        lockedMessage: "🔒 Tài khoản bị khóa do nhập sai mật khẩu quá 5 lần. Vui lòng thử lại sau"
+      },
+      en: {
+        // Top bar
+        brandText: "AES Platform",
+        registerBtn: "Sign Up",
+        loginBtn: "Log In",
+        
+        // Login form
+        loginTitle: "Welcome Back",
+        loginSubtitle: "Smart English learning platform with AI - practice pronunciation, communication and enhance language skills",
+        emailLabel: "Email",
+        passwordLabel: "Password",
+        forgotPassword: "Forgot Password?",
+        loginButton: "Log In Now",
+        orContinue: "Or continue with",
+        whoAreYou: "Who are you?",
+        signUpText: "Don't have an account?",
+        signUpLink: "Sign Up Free",
+        
+        // Register form
+        registerTitle: "Create Account",
+        registerSubtitle: "Start your journey to master English with smart AI",
+        nameLabel: "Full Name",
+        confirmPasswordLabel: "Confirm Password",
+        roleLabel: "Your Role",
+        registerButton: "Create Account",
+        haveAccount: "Already have an account?",
+        loginLink: "Log In Now",
+        
+        // Roles
+        adminRole: "Administrator",
+        mentorRole: "Mentor",
+        learnerRole: "Learner",
+        
+        // Features
+        aiFeature: "Smart AI",
+        aiDesc: "Analyze pronunciation and provide instant feedback",
+        progressFeature: "Track Progress",
+        progressDesc: "Detailed reports on your improvement",
+        multiLangFeature: "Multi-language",
+        multiLangDesc: "Support Vietnamese, English, Korean",
+        
+        // Hero
+        heroTitle: "Master English with AI",
+        heroSubtitle: "Learn English effectively with advanced AI technology - practice standard pronunciation, improve communication skills and conquer global language",
+        students: "Students",
+        satisfaction: "Satisfaction",
+        support: "Support",
+        
+        // Toast messages
+        selectRole: "Selected role:",
+        loginSuccess: "Login successful! Welcome",
+        registerSuccess: "Registration successful! Redirecting to homepage...",
+        wrongCredentials: "Incorrect email or password",
+        accountLocked: "Account locked due to 5 failed attempts. Please try again after 15 minutes.",
+        remainingAttempts: "Wrong password. You have",
+        attemptsLeft: "attempts left.",
+        passwordMismatch: "Password confirmation does not match",
+        passwordTooShort: "Password must be at least 6 characters",
+        emailExists: "Email already registered. Please use another email or log in.",
+        accountDisabled: "Your account has been disabled. Please contact administrator.",
+        roleMismatch: "This account does not have permission for",
+        enterEmail: "Please enter your email",
+        emailNotFound: "Email does not exist in the system",
+        resetSent: "Password reset link has been sent to your email!",
+        fillAllFields: "Please fill in all information",
+        
+        // Locked message
+        lockedMessage: "🔒 Account locked due to 5 failed password attempts. Please try again after"
+      },
+      ko: {
+        // Top bar
+        brandText: "AES 플랫폼",
+        registerBtn: "회원가입",
+        loginBtn: "로그인",
+        
+        // Login form
+        loginTitle: "환영합니다",
+        loginSubtitle: "AI와 함께하는 스마트 영어 학습 플랫폼 - 발음 연습, 의사소통 및 언어 능력 향상",
+        emailLabel: "이메일",
+        passwordLabel: "비밀번호",
+        forgotPassword: "비밀번호를 잊으셨나요?",
+        loginButton: "지금 로그인",
+        orContinue: "또는 다음으로 계속",
+        whoAreYou: "당신은 누구입니까?",
+        signUpText: "계정이 없으신가요?",
+        signUpLink: "무료 회원가입",
+        
+        // Register form
+        registerTitle: "계정 만들기",
+        registerSubtitle: "스마트 AI와 함께 영어 정복 여정을 시작하세요",
+        nameLabel: "이름",
+        confirmPasswordLabel: "비밀번호 확인",
+        roleLabel: "귀하의 역할",
+        registerButton: "계정 만들기",
+        haveAccount: "이미 계정이 있으신가요?",
+        loginLink: "지금 로그인",
+        
+        // Roles
+        adminRole: "관리자",
+        mentorRole: "멘토",
+        learnerRole: "학습자",
+        
+        // Features
+        aiFeature: "스마트 AI",
+        aiDesc: "발음 분석 및 즉각적인 피드백 제공",
+        progressFeature: "진행 상황 추적",
+        progressDesc: "개선 사항에 대한 자세한 보고서",
+        multiLangFeature: "다국어 지원",
+        multiLangDesc: "베트남어, 영어, 한국어 지원",
+        
+        // Hero
+        heroTitle: "AI로 영어 마스터하기",
+        heroSubtitle: "고급 AI 기술로 효과적으로 영어를 배우세요 - 표준 발음 연습, 의사소통 기술 향상 및 글로벌 언어 정복",
+        students: "학생",
+        satisfaction: "만족도",
+        support: "지원",
+        
+        // Toast messages
+        selectRole: "선택한 역할:",
+        loginSuccess: "로그인 성공! 환영합니다",
+        registerSuccess: "등록 성공! 홈페이지로 이동 중...",
+        wrongCredentials: "이메일 또는 비밀번호가 잘못되었습니다",
+        accountLocked: "5회 실패로 인해 계정이 잠겼습니다. 15분 후에 다시 시도해 주세요.",
+        remainingAttempts: "잘못된 비밀번호. 남은 횟수:",
+        attemptsLeft: "회",
+        passwordMismatch: "비밀번호 확인이 일치하지 않습니다",
+        passwordTooShort: "비밀번호는 최소 6자 이상이어야 합니다",
+        emailExists: "이미 등록된 이메일입니다. 다른 이메일을 사용하거나 로그인하세요.",
+        accountDisabled: "귀하의 계정이 비활성화되었습니다. 관리자에게 문의하세요.",
+        roleMismatch: "이 계정에는 다음에 대한 권한이 없습니다",
+        enterEmail: "이메일을 입력해 주세요",
+        emailNotFound: "시스템에 이메일이 존재하지 않습니다",
+        resetSent: "비밀번호 재설정 링크가 이메일로 전송되었습니다!",
+        fillAllFields: "모든 정보를 입력해 주세요",
+        
+        // Locked message
+        lockedMessage: "🔒 5회 잘못된 비밀번호 시도로 인해 계정이 잠겼습니다. 다음 후 다시 시도해 주세요"
+      }
+    };
+
+    // ===== STATE MANAGEMENT =====
+    const authState = {
+      selectedRole: 'learner',
+      failedAttempts: {},
+      lockoutDuration: 15 * 60 * 1000, // 15 minutes
+      maxAttempts: 5,
+      currentLang: 'vi',
+      
+      init() {
+        // Load language
+        this.currentLang = localStorage.getItem('aes_lang') || this.detectBrowserLang();
+        this.setLanguage(this.currentLang);
+        
+        // Load saved role
+        const savedRole = localStorage.getItem('aes_selected_role') || 'learner';
+        this.selectedRole = savedRole;
+        this.updateRoleSelection(savedRole, 'login');
+        this.updateRoleSelection(savedRole, 'register');
+        
+        // Load failed attempts
+        const savedAttempts = localStorage.getItem('aes_failed_attempts');
+        if (savedAttempts) {
+          try {
+            this.failedAttempts = JSON.parse(savedAttempts);
+            this.cleanupExpiredLockouts();
+          } catch (e) {
+            console.error('Failed to parse failed attempts:', e);
+            this.failedAttempts = {};
+          }
+        }
+        
+        // Initialize demo users
+        this.initDemoUsers();
+      },
+      
+      detectBrowserLang() {
+        const lang = navigator.language || navigator.userLanguage;
+        if (lang.startsWith('ko')) return 'ko';
+        if (lang.startsWith('en')) return 'en';
+        return 'vi';
+      },
+      
+      setLanguage(lang) {
+        this.currentLang = lang;
+        localStorage.setItem('aes_lang', lang);
+        document.body.className = `lang-${lang}`;
+        this.updateTexts();
+        this.updateLangButtons();
+      },
+      
+      updateTexts() {
+        const t = translations[this.currentLang];
+        
+        // Brand text
+        document.querySelector('.brand-text').textContent = t.brandText;
+        
+        // Buttons
+        document.getElementById('toggleRegisterBtn').innerHTML = `<i class="fas fa-user-plus"></i> ${t.registerBtn}`;
+        
+        // Login form
+        document.querySelector('#loginForm .title').textContent = t.loginTitle;
+        document.querySelector('.subtitle').textContent = t.loginSubtitle;
+        document.querySelectorAll('.label-text')[0].textContent = t.emailLabel;
+        document.querySelectorAll('.label-text')[1].textContent = t.passwordLabel;
+        document.querySelector('.forgot .link-text').textContent = t.forgotPassword;
+        document.querySelector('#loginForm .btn-text').textContent = t.loginButton;
+        document.querySelector('.divider-text').textContent = t.orContinue;
+        document.querySelector('.who-text').textContent = t.whoAreYou;
+        document.querySelector('#showRegisterLink .link-text').textContent = t.signUpLink;
+        document.querySelector('.signup').childNodes[0].textContent = t.signUpText + ' ';
+        
+        // Register form
+        document.querySelector('#registerForm .title').textContent = t.registerTitle;
+        document.querySelectorAll('.subtitle')[1].textContent = t.registerSubtitle;
+        document.querySelectorAll('.label-text')[2].textContent = t.nameLabel;
+        document.querySelectorAll('.label-text')[4].textContent = t.confirmPasswordLabel;
+        document.querySelectorAll('.divider-text')[1].textContent = t.roleLabel;
+        document.querySelectorAll('.who-text')[1].textContent = t.whoAreYou;
+        document.querySelector('#registerForm .btn-text').textContent = t.registerButton;
+        document.querySelector('#showLoginLink .link-text').textContent = t.loginLink;
+        document.querySelector('.signup').childNodes[2].textContent = t.haveAccount + ' ';
+        
+        // Roles
+        document.querySelectorAll('.role-text')[0].textContent = t.adminRole;
+        document.querySelectorAll('.role-text')[1].textContent = t.mentorRole;
+        document.querySelectorAll('.role-text')[2].textContent = t.learnerRole;
+        document.querySelectorAll('.role-text')[3].textContent = t.adminRole;
+        document.querySelectorAll('.role-text')[4].textContent = t.mentorRole;
+        document.querySelectorAll('.role-text')[5].textContent = t.learnerRole;
+        
+        // Features
+        document.querySelectorAll('.feature-title')[0].textContent = t.aiFeature;
+        document.querySelectorAll('.feature-desc')[0].textContent = t.aiDesc;
+        document.querySelectorAll('.feature-title')[1].textContent = t.progressFeature;
+        document.querySelectorAll('.feature-desc')[1].textContent = t.progressDesc;
+        document.querySelectorAll('.feature-title')[2].textContent = t.multiLangFeature;
+        document.querySelectorAll('.feature-desc')[2].textContent = t.multiLangDesc;
+        
+        // Hero
+        document.querySelector('.hero-title').textContent = t.heroTitle;
+        document.querySelector('.hero-subtitle').textContent = t.heroSubtitle;
+        document.querySelectorAll('.stat-label')[0].textContent = t.students;
+        document.querySelectorAll('.stat-label')[1].textContent = t.satisfaction;
+        document.querySelectorAll('.stat-label')[2].textContent = t.support;
+      },
+      
+      updateLangButtons() {
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+          btn.classList.toggle('active', btn.dataset.lang === this.currentLang);
+        });
+      },
+      
+      selectRole(role, formType = 'login') {
+        this.selectedRole = role;
+        localStorage.setItem('aes_selected_role', role);
+        this.updateRoleSelection(role, formType);
+        this.showToast(`${translations[this.currentLang].selectRole} ${this.getRoleName(role)}`, 'success');
+      },
+      
+      getRoleName(role) {
+        const roles = {
+          admin: translations[this.currentLang].adminRole,
+          mentor: translations[this.currentLang].mentorRole,
+          learner: translations[this.currentLang].learnerRole
+        };
+        return roles[role] || role;
+      },
+      
+      updateRoleSelection(role, formType) {
+        const formSelector = formType === 'register' ? '#registerForm' : '#loginForm';
+        document.querySelectorAll(`${formSelector} .role`).forEach(btn => {
+          const isActive = btn.dataset.role === role;
+          btn.classList.toggle('active', isActive);
+          btn.setAttribute('aria-checked', isActive ? 'true' : 'false');
+        });
+      },
+      
+      isAccountLocked(email) {
+        const account = this.failedAttempts[email];
+        if (!account) return false;
+        
+        const now = Date.now();
+        if (account.lockedUntil && now < account.lockedUntil) {
+          return true;
+        }
+        
+        if (account.lockedUntil && now >= account.lockedUntil) {
+          delete this.failedAttempts[email];
+          this.saveAttempts();
+          return false;
+        }
+        
+        return false;
+      },
+      
+      recordFailedAttempt(email) {
+        const now = Date.now();
+        
+        if (!this.failedAttempts[email]) {
+          this.failedAttempts[email] = {
+            count: 0,
+            firstAttempt: now
+          };
+        }
+        
+        const account = this.failedAttempts[email];
+        account.count++;
+        
+        if (account.count >= this.maxAttempts) {
+          account.lockedUntil = now + this.lockoutDuration;
+        }
+        
+        this.saveAttempts();
+        return account;
+      },
+      
+      resetFailedAttempts(email) {
+        if (this.failedAttempts[email]) {
+          delete this.failedAttempts[email];
+          this.saveAttempts();
+        }
+      },
+      
+      saveAttempts() {
+        try {
+          localStorage.setItem('aes_failed_attempts', JSON.stringify(this.failedAttempts));
+        } catch (e) {
+          console.error('Failed to save attempts:', e);
+        }
+      },
+      
+      cleanupExpiredLockouts() {
+        const now = Date.now();
+        let changed = false;
+        
+        for (const email in this.failedAttempts) {
+          const account = this.failedAttempts[email];
+          if (account.lockedUntil && now >= account.lockedUntil) {
+            delete this.failedAttempts[email];
+            changed = true;
+          }
+        }
+        
+        if (changed) {
+          this.saveAttempts();
+        }
+      },
+      
+      initDemoUsers() {
+        if (!localStorage.getItem('aes_users')) {
+          const demoUsers = {
+            'admin@aes.com': {
+              password: 'admin123',
+              name: 'Admin User',
+              role: 'admin',
+              isActive: true,
+              createdAt: new Date().toISOString()
+            },
+            'mentor@aes.com': {
+              password: 'mentor123',
+              name: 'Mentor User',
+              role: 'mentor',
+              isActive: true,
+              createdAt: new Date().toISOString()
+            },
+            'learner@aes.com': {
+              password: 'learner123',
+              name: 'Learner User',
+              role: 'learner',
+              isActive: true,
+              createdAt: new Date().toISOString()
+            }
+          };
+          localStorage.setItem('aes_users', JSON.stringify(demoUsers));
+        }
+      },
+      
+      showToast(message, type = 'info') {
+        const toast = document.getElementById('toast');
+        const toastMessage = document.getElementById('toastMessage');
+        toastMessage.textContent = message;
+        toast.className = `toast show ${type}`;
+        
+        // Update icon based on type
+        const icon = toast.querySelector('i');
+        if (type === 'success') icon.className = 'fas fa-check-circle';
+        else if (type === 'error') icon.className = 'fas fa-exclamation-circle';
+        else if (type === 'warning') icon.className = 'fas fa-exclamation-triangle';
+        else icon.className = 'fas fa-info-circle';
+        
+        setTimeout(() => {
+          toast.classList.remove('show');
+        }, 3500);
+      }
+    };
+
+    // ===== DOM ELEMENTS =====
+    const elements = {
+      langBtns: document.querySelectorAll('.lang-btn'),
+      loginRoles: document.querySelectorAll('#loginForm .role'),
+      registerRoles: document.querySelectorAll('#registerForm .role'),
+      toggleRegisterBtn: document.getElementById('toggleRegisterBtn'),
+      showRegisterLink: document.getElementById('showRegisterLink'),
+      showLoginLink: document.getElementById('showLoginLink'),
+      loginForm: document.getElementById('loginForm'),
+      loginEmail: document.getElementById('loginEmail'),
+      loginPassword: document.getElementById('loginPassword'),
+      toggleLoginPassword: document.getElementById('toggleLoginPassword'),
+      registerForm: document.getElementById('registerForm'),
+      registerName: document.getElementById('registerName'),
+      registerEmail: document.getElementById('registerEmail'),
+      registerPassword: document.getElementById('registerPassword'),
+      confirmPassword: document.getElementById('confirmPassword'),
+      toggleRegisterPassword: document.getElementById('toggleRegisterPassword'),
+      toggleConfirmPassword: document.getElementById('toggleConfirmPassword'),
+      forgotPasswordLink: document.getElementById('forgotPasswordLink'),
+      forgotModal: document.getElementById('forgotModal'),
+      closeForgotModal: document.getElementById('closeForgotModal'),
+      forgotEmail: document.getElementById('forgotEmail'),
+      resetPasswordBtn: document.getElementById('resetPasswordBtn'),
+      lockedMessage: document.getElementById('lockedMessage'),
+      toast: document.getElementById('toast')
+    };
+
+    // ===== EVENT LISTENERS =====
+    function initEventListeners() {
+      // Language selection
+      elements.langBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          authState.setLanguage(btn.dataset.lang);
+        });
+      });
+      
+      // Role selection for login form
+      elements.loginRoles.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          authState.selectRole(btn.dataset.role, 'login');
+        });
+      });
+      
+      // Role selection for register form
+      elements.registerRoles.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          authState.selectRole(btn.dataset.role, 'register');
+        });
+      });
+      
+      // Form toggling
+      elements.toggleRegisterBtn.addEventListener('click', showRegisterForm);
+      elements.showRegisterLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        showRegisterForm();
+      });
+      elements.showLoginLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        showLoginForm();
+      });
+      
+      // Password visibility toggle
+      elements.toggleLoginPassword.addEventListener('click', (e) => {
+        e.preventDefault();
+        togglePasswordVisibility(elements.loginPassword);
+      });
+      
+      elements.toggleRegisterPassword.addEventListener('click', (e) => {
+        e.preventDefault();
+        togglePasswordVisibility(elements.registerPassword);
+      });
+      
+      elements.toggleConfirmPassword.addEventListener('click', (e) => {
+        e.preventDefault();
+        togglePasswordVisibility(elements.confirmPassword);
+      });
+      
+      // Forgot password
+      elements.forgotPasswordLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        elements.forgotModal.classList.add('show');
+      });
+      
+      elements.closeForgotModal.addEventListener('click', (e) => {
+        e.preventDefault();
+        elements.forgotModal.classList.remove('show');
+      });
+      
+      // Close modal when clicking outside
+      window.addEventListener('click', (e) => {
+        if (e.target === elements.forgotModal) {
+          elements.forgotModal.classList.remove('show');
+        }
+      });
+      
+      // Form submissions
+      elements.loginForm.addEventListener('submit', handleLogin);
+      elements.registerForm.addEventListener('submit', handleRegister);
+      elements.resetPasswordBtn.addEventListener('click', handleForgotPassword);
+      
+      // Auto-fill demo credentials for testing
+      if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+        elements.loginEmail.value = 'admin@aes.com';
+        elements.loginPassword.value = 'admin123';
+      }
+    }
+
+    // ===== HELPER FUNCTIONS =====
+    function togglePasswordVisibility(input) {
+      const button = input.nextElementSibling;
+      const icon = button.querySelector('i');
+      
+      if (input.type === 'password') {
+        input.type = 'text';
+        icon.classList.remove('fa-eye');
+        icon.classList.add('fa-eye-slash');
+      } else {
+        input.type = 'password';
+        icon.classList.remove('fa-eye-slash');
+        icon.classList.add('fa-eye');
+      }
+    }
+
+    function showLockedMessage(email) {
+      const account = authState.failedAttempts[email];
+      if (!account || !account.lockedUntil) return;
+      
+      const remaining = Math.ceil((account.lockedUntil - Date.now()) / 60000);
+      const t = translations[authState.currentLang];
+      elements.lockedMessage.textContent = `${t.lockedMessage} ${remaining} phút.`;
+      elements.lockedMessage.style.display = 'block';
+      
+      // Disable login button
+      const loginBtn = elements.loginForm.querySelector('button[type="submit"]');
+      if (loginBtn) {
+        loginBtn.disabled = true;
+        loginBtn.style.opacity = '0.6';
+        loginBtn.style.cursor = 'not-allowed';
+      }
+      
+      // Re-enable after lockout period
+      setTimeout(() => {
+        elements.lockedMessage.style.display = 'none';
+        if (loginBtn) {
+          loginBtn.disabled = false;
+          loginBtn.style.opacity = '1';
+          loginBtn.style.cursor = 'pointer';
+        }
+        authState.resetFailedAttempts(email);
+      }, account.lockedUntil - Date.now());
+    }
+
+    function showLoginForm() {
+      elements.loginForm.style.display = 'flex';
+      elements.registerForm.style.display = 'none';
+      const t = translations[authState.currentLang];
+      document.querySelector('.topbar .btn-secondary .btn-text').textContent = t.registerBtn;
+      document.querySelector('.topbar .btn-secondary').onclick = showRegisterForm;
+    }
+
+    function showRegisterForm() {
+      elements.loginForm.style.display = 'none';
+      elements.registerForm.style.display = 'flex';
+      const t = translations[authState.currentLang];
+      document.querySelector('.topbar .btn-secondary .btn-text').textContent = t.loginBtn;
+      document.querySelector('.topbar .btn-secondary').onclick = showLoginForm;
+    }
+
+    // ===== AUTH FUNCTIONS =====
+    function handleLogin(e) {
+      e.preventDefault();
+      
+      const email = elements.loginEmail.value.trim().toLowerCase();
+      const password = elements.loginPassword.value;
+      const selectedRole = authState.selectedRole;
+      const t = translations[authState.currentLang];
+      
+      // Check if account is locked
+      if (authState.isAccountLocked(email)) {
+        showLockedMessage(email);
+        return;
+      }
+      
+      // Validate inputs
+      if (!email || !password) {
+        authState.showToast(t.fillAllFields, 'error');
+        return;
+      }
+      
+      // Get users from localStorage
+      let users = {};
+      try {
+        users = JSON.parse(localStorage.getItem('aes_users') || '{}');
+      } catch (e) {
+        console.error('Failed to parse users:', e);
+        authState.showToast('Lỗi hệ thống. Vui lòng thử lại sau.', 'error');
+        return;
+      }
+      
+      const user = users[email];
+      
+      // Check if user exists
+      if (!user) {
+        const account = authState.recordFailedAttempt(email);
+        if (account.count >= authState.maxAttempts) {
+          authState.showToast(t.accountLocked, 'error');
+          showLockedMessage(email);
+        } else {
+          authState.showToast(`${t.remainingAttempts} ${authState.maxAttempts - account.count} ${t.attemptsLeft}`, 'warning');
+        }
+        return;
+      }
+      
+      // Check if account is active
+      if (!user.isActive) {
+        authState.showToast(t.accountDisabled, 'error');
+        return;
+      }
+      
+      // Check password
+      if (user.password !== password) {
+        const account = authState.recordFailedAttempt(email);
+        if (account.count >= authState.maxAttempts) {
+          authState.showToast(t.accountLocked, 'error');
+          showLockedMessage(email);
+        } else {
+          authState.showToast(`${t.remainingAttempts} ${authState.maxAttempts - account.count} ${t.attemptsLeft}`, 'warning');
+        }
+        return;
+      }
+      
+      // Check role match
+      if (user.role !== selectedRole) {
+        authState.showToast(`${t.roleMismatch} ${authState.getRoleName(selectedRole)}`, 'error');
+        return;
+      }
+      
+      // Reset failed attempts on success
+      authState.resetFailedAttempts(email);
+      
+      // Save login session
+      const session = {
+        email: email,
+        name: user.name,
+        role: user.role,
+        loginTime: new Date().toISOString()
+      };
+      localStorage.setItem('aes_session', JSON.stringify(session));
+      
+      // Redirect to appropriate dashboard
+      authState.showToast(`${t.loginSuccess} ${user.name}!`, 'success');
+      
+      setTimeout(() => {
+        const roleMap = {
+          admin: '../admin/index.html',
+          mentor: '../mentor/index.html',
+          learner: '../learner/index.html'
+        };
+        
+        const redirectUrl = roleMap[selectedRole] || '../learner/index.html';
+        
+        // For demo purposes
+        alert(`Đăng nhập thành công với vai trò ${authState.getRoleName(selectedRole)}!\n\nRedirecting to: ${redirectUrl}\n\n(Tính năng redirect sẽ hoạt động khi deploy lên server)`);
+      }, 1500);
+    }
+
+    function handleRegister(e) {
+      e.preventDefault();
+      
+      const name = elements.registerName.value.trim();
+      const email = elements.registerEmail.value.trim().toLowerCase();
+      const password = elements.registerPassword.value;
+      const confirmPassword = elements.confirmPassword.value;
+      const selectedRole = authState.selectedRole;
+      const t = translations[authState.currentLang];
+      
+      // Validate inputs
+      if (!name || !email || !password || !confirmPassword) {
+        authState.showToast(t.fillAllFields, 'error');
+        return;
+      }
+      
+      if (password !== confirmPassword) {
+        authState.showToast(t.passwordMismatch, 'error');
+        return;
+      }
+      
+      if (password.length < 6) {
+        authState.showToast(t.passwordTooShort, 'error');
+        return;
+      }
+      
+      // Get users from localStorage
+      let users = {};
+      try {
+        users = JSON.parse(localStorage.getItem('aes_users') || '{}');
+      } catch (e) {
+        console.error('Failed to parse users:', e);
+        authState.showToast('Lỗi hệ thống. Vui lòng thử lại sau.', 'error');
+        return;
+      }
+      
+      // Check if email already exists
+      if (users[email]) {
+        authState.showToast(t.emailExists, 'error');
+        return;
+      }
+      
+      // Create new user
+      users[email] = {
+        name: name,
+        password: password,
+        role: selectedRole,
+        isActive: true,
+        createdAt: new Date().toISOString(),
+        lastLogin: null
+      };
+      
+      localStorage.setItem('aes_users', JSON.stringify(users));
+      
+      // Automatically login after registration
+      const session = {
+        email: email,
+        name: name,
+        role: selectedRole,
+        loginTime: new Date().toISOString()
+      };
+      localStorage.setItem('aes_session', JSON.stringify(session));
+      
+      authState.showToast(t.registerSuccess, 'success');
+      
+      setTimeout(() => {
+        const roleMap = {
+          admin: '../admin/index.html',
+          mentor: '../mentor/index.html',
+          learner: '../learner/index.html'
+        };
+        
+        const redirectUrl = roleMap[selectedRole] || '../learner/index.html';
+        
+        // For demo purposes
+        alert(`Đăng ký thành công với vai trò ${authState.getRoleName(selectedRole)}!\n\nRedirecting to: ${redirectUrl}\n\n(Tính năng redirect sẽ hoạt động khi deploy lên server)`);
+      }, 1500);
+    }
+
+    function handleForgotPassword(e) {
+      e.preventDefault();
+      
+      const email = elements.forgotEmail.value.trim().toLowerCase();
+      const t = translations[authState.currentLang];
+      
+      if (!email) {
+        authState.showToast(t.enterEmail, 'error');
+        return;
+      }
+      
+      // Get users from localStorage
+      let users = {};
+      try {
+        users = JSON.parse(localStorage.getItem('aes_users') || '{}');
+      } catch (e) {
+        console.error('Failed to parse users:', e);
+        authState.showToast('Lỗi hệ thống. Vui lòng thử lại sau.', 'error');
+        return;
+      }
+      
+      // Check if email exists
+      if (!users[email]) {
+        authState.showToast(t.emailNotFound, 'error');
+        return;
+      }
+      
+      elements.forgotModal.classList.remove('show');
+      authState.showToast(t.resetSent, 'success');
+      
+      // Reset the form
+      elements.forgotEmail.value = '';
+    }
+
+    // ===== INITIALIZE =====
+    document.addEventListener('DOMContentLoaded', () => {
+      // Initialize auth state
+      authState.init();
+      
+      // Setup event listeners
+      initEventListeners();
+    });
+  </script>
 </body>
 </html>
