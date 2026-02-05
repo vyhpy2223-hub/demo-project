@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>AES Platform - Login</title>
+  <link rel="stylesheet" href="./assets/css/style.css" />
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo"></div>
+      <span class="brand-text">AES Platform</span>
+    </div>
+
+    <div class="top-actions">
+      <button class="lang" type="button" aria-label="Language">
+        <span class="flag"></span>
+        <span>English</span>
+        <span class="chev">▾</span>
+      </button>
+      <a class="btn btn-primary btn-small" href="#" role="button">Sign up</a>
+    </div>
+  </header>
+
+  <main class="page">
+    <section class="card">
+      <h1 class="title">Welcome to<br/>AES Platform</h1>
+
+      <form class="form" id="loginForm">
+        <label class="label">Username</label>
+        <div class="input">
+          <span class="icon">👤</span>
+          <input id="username" type="text" placeholder="Username" autocomplete="username" />
+        </div>
+
+        <label class="label">Password</label>
+        <div class="input">
+          <span class="icon">🔒</span>
+          <input id="password" type="password" placeholder="Password" autocomplete="current-password" />
+          <button class="ghost" type="button" id="togglePw" aria-label="Show password">››</button>
+        </div>
+
+        <a class="forgot" href="#">Forgot your password?</a>
+
+        <button class="btn btn-primary btn-large" type="submit">Log in</button>
+
+        <div class="divider"></div>
+
+        <h2 class="who">Who are you?</h2>
+
+        <div class="roles" role="radiogroup" aria-label="Choose role">
+          <button class="role role-mentor" type="button" data-role="mentor" role="radio" aria-checked="false">
+            <span class="avatar">👨‍🏫</span>
+            <span class="role-text">Mentor</span>
+          </button>
+
+          <button class="role role-learner" type="button" data-role="learner" role="radio" aria-checked="false">
+            <span class="avatar">👩‍🎓</span>
+            <span class="role-text">Learner</span>
+          </button>
+
+          <button class="role role-admin" type="button" data-role="admin" role="radio" aria-checked="false">
+            <span class="avatar">🧑‍💼</span>
+            <span class="role-text">Admin</span>
+          </button>
+        </div>
+
+        <p class="signup">
+          Don't have an account? <a href="#">Sign up</a>
+        </p>
+      </form>
+    </section>
+
+    <section class="hero" aria-hidden="true">
+      <img src="./assets_img/hero.png" alt="" />
+    </section>
+  </main>
+
+  <script src="./assets/js/app.js"></script>
+</body>
+</html>
