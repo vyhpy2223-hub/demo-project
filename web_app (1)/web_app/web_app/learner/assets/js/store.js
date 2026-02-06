@@ -39,3 +39,4 @@ function addPracticeLog({ minutes=10, score=70, mode="ai" }) {
   saveLearnerData(data);
   return data;
 }
+
