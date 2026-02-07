@@ -48,3 +48,4 @@ function addBubble(text, type) {
     conversation.scrollTop = conversation.scrollHeight;
 }
 
+
