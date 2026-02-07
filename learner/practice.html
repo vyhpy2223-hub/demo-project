@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>SpeakAI – Luyện nói với AI</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/practice.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+<header class="practice-header">
+    <h1><i class="fas fa-robot"></i> Speak<span class="accent">AI</span></h1>
+    <button onclick="history.back()" class="back-btn">
+        <i class="fas fa-arrow-left"></i> Quay lại
+    </button>
+</header>
+
+<main class="practice-container">
+
+    <!-- Topic select -->
+    <section class="topic-select">
+        <label>Chọn chủ đề luyện nói</label>
+        <select id="topicSelect">
+            <option value="restaurant">Nhà hàng</option>
+            <option value="travel">Du lịch</option>
+            <option value="interview">Phỏng vấn</option>
+            <option value="daily">Giao tiếp hằng ngày</option>
+        </select>
+    </section>
+
+    <!-- Conversation -->
+    <section class="conversation" id="conversation">
+        <div class="bubble ai">
+            👋 Hi! I'm your AI speaking partner.  
+            Hãy nhấn 🎤 và bắt đầu nói nhé!
+        </div>
+    </section>
+
+    <!-- Controls -->
+    <section class="controls">
+        <button id="recordBtn" class="record-btn">
+            <i class="fas fa-microphone"></i> Nhấn để nói
+        </button>
+    </section>
+
+    <!-- Feedback -->
+    <section class="feedback" id="feedback">
+        <h3>🎯 Phản hồi phát âm</h3>
+        <p id="score">Độ chính xác: --%</p>
+        <p id="suggestion"></p>
+    </section>
+
+</main>
+
+<script src="assets/js/practice.js"></script>
+</body>
+</html>
