@@ -8,3 +8,4 @@ FROM users u
 LEFT JOIN speaking_sessions s ON u.user_id = s.user_id
 LEFT JOIN ai_feedbacks a ON s.session_id = a.session_id
 GROUP BY u.user_id;
+
