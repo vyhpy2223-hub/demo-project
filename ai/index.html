@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>AI Speaking Practice</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6fb;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .ai-container {
+      width: 360px;
+      background: #fff;
+      border-radius: 12px;
+      padding: 16px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .ai-header {
+      text-align: center;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    #topic {
+      margin-bottom: 8px;
+      padding: 6px;
+    }
+
+    #chatBox {
+      flex: 1;
+      border: 1px solid #ddd;
+      padding: 8px;
+      overflow-y: auto;
+      margin-bottom: 8px;
+    }
+
+    .ai-input {
+      display: flex;
+      gap: 6px;
+    }
+
+    #textInput {
+      flex: 1;
+      padding: 6px;
+    }
+
+    .ai-actions {
+      display: flex;
+      gap: 6px;
+      margin-top: 6px;
+    }
+
+    button {
+      padding: 6px 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="ai-container">
+    <div class="ai-header">🤖 AI Speaking Practice</div>
+
+    <!-- Topic -->
+    <select id="topic">
+      <option value="restaurant">Restaurant</option>
+      <option value="travel">Travel</option>
+      <option value="job">Job</option>
+    </select>
+
+    <!-- Chat -->
+    <div id="chatBox"></div>
+
+    <!-- Input -->
+    <div class="ai-input">
+      <input type="text" id="textInput" placeholder="Type your English..." />
+      <button id="sendBtn">Send</button>
+    </div>
+
+    <!-- Actions -->
+    <div class="ai-actions">
+      <button id="micBtn">🎤 Speak</button>
+      <button id="resetBtn">Reset</button>
+    </div>
+  </div>
+
+  <!-- JS -->
+  <script src="ai.js"></script>
+</body>
+</html>
