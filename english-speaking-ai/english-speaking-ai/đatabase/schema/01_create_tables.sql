@@ -33,3 +33,4 @@ CREATE TABLE user_profiles (
     bio TEXT,
     FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
+
