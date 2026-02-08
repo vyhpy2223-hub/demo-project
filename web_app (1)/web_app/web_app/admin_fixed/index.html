@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin</title>
+  <script>
+    (function () {
+      function goAuth() {
+        window.location.replace('../auth/index.html');
+      }
+      try {
+        const raw = localStorage.getItem('aes_session');
+        if (!raw) return goAuth();
+        const session = JSON.parse(raw);
+        if (!session || session.role !== 'admin') return goAuth();
+      } catch (e) {
+        return goAuth();
+      }
+      window.location.replace('./modules/dashboard/index.html');
+    })();
+  </script>
+</head>
+<body></body>
+</html>
